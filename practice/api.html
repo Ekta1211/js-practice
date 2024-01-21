@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card</title>
+    <style>
+        *{
+            padding: 0%;
+            margin: 0;
+        }
+        body{
+            background-color: #494949;
+        }
+        .div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            gap: 10px;
+            height: 100vh;
+            width: 100vw;
+        }
+    </style>
+</head>
+<body>
+    
+</body>
+<script>
+    const div=document.createElement('div');
+    div.setAttribute("class","div")
+    const button=document.createElement('button');
+    button.appendChild(document.createTextNode("Click here"))
+    let infoDiv=document.createElement('div');
+    div.appendChild(button)
+    div.appendChild(infoDiv)
+    document.body.appendChild(div)
+    
+    
+
+    const requestUrl='https://api.github.com/users/sumitkumar0403';
+    const xhr=new XMLHttpRequest()
+    xhr.open("GET",requestUrl);
+
+    xhr.onreadystatechange=function(){
+
+        if(xhr.readyState===4){
+            let data= JSON.parse(this.responseText);
+            
+           const image= data.avatar_url;
+           const followers=data.followers
+
+           button.addEventListener('click',function(){
+
+           putImage(image);
+           displayFollowers(followers)
+           console.log("Display completed!!")
+           
+           })
+        
+        }
+       
+    }
+    xhr.send()
+
+    function putImage(image){
+        const img=document.createElement('img')
+        img.setAttribute("height","200px");
+        img.setAttribute("width","200px");
+        img.setAttribute("src",(image));
+        img.setAttribute("alt","Git Avatar Image");
+        infoDiv.appendChild(img)
+    }
+
+    function displayFollowers(followers){
+        const p =document.createElement('p')
+        p.style.color="white";
+        p.innerHTML=Followers = ${followers};
+        infoDiv.appendChild(p)
+    }
+</script>
+</html>
