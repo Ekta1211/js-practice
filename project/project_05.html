@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Color Change with Buttons</title>
+    <style>
+        .container{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #start, #stop{
+            font-size: 1.75rem;
+            font-weight: 600;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body style="background-color: #212121; color: #fff">
+    
+    <div class="container">
+        <h1>Start should change the Background color every second</h1>
+        <div class="btn-box">
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+        </div>
+    </div>
+    
+</body>
+<script>
+    const start = document.getElementById('start')
+    const stop = document.getElementById('stop')
+    const body = document.querySelector('body')
+    let strt_btn;
+    // let str;
+
+    const randCol=function(){
+        string="#"
+        for(let i=0;i<6;i++){
+                let c=Math.floor(Math.random()*16);
+                string+=c.toString(16)
+            }
+            return string
+    }
+
+    start.addEventListener('click', function(e){
+        strt_btn = setInterval(function(){
+            body.style.backgroundColor = randCol();
+        },1000)
+    },false)
+
+    stop.addEventListener('click', (e)=>{
+        clearInterval(strt_btn)
+        strt_btn = null
+    },false)
+   
+</script>
+</html>

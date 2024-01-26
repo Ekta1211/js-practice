@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+</head>
+<body>
+    <h1>Hello Everyone</h1>
+
+    <button id="start">Start</button>
+    <button id="end">End</button>
+</body>
+<script>
+    const start = document.getElementById('start')
+    const end = document.getElementById('end')
+    let event;
+    start.addEventListener('click',function(e){
+         event = setInterval(function(){
+            console.log("JS Worked", Date.now());
+            const heading = document.querySelector('h1')
+            heading.innerHTML = 'Done JS'
+        },1000)
+    },false);
+
+    end.addEventListener('click',function(e){
+        clearInterval(event)
+        const heading = document.querySelector('h1')
+        heading.innerHTML = 'End'
+    },false)
+</script>
+</html>
